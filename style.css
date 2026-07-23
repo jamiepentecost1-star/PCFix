@@ -1,0 +1,12 @@
+
+body{margin:0;background:#050505;color:white;font-family:Arial,sans-serif}
+#matrix{position:fixed;inset:0;z-index:-2}
+header{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;padding:15px 5%;background:rgba(0,0,0,.85)}
+.logo{color:#1e90ff;font-size:1.8rem;font-weight:bold}
+nav a{color:white;text-decoration:none;margin-left:20px}
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle,rgba(0,120,255,.2),transparent)}
+h1{font-size:5rem;color:#1e90ff}
+.btn{background:#0078ff;padding:12px 24px;border-radius:8px;color:white;text-decoration:none}
+section{padding:80px 10%}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.card{background:#111;padding:25px;border:1px solid #1e90ff;border-radius:10px}
