@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCFIX - Troubleshoot. Repair. Solve.</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Arial,sans-serif;
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+#matrix{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+z-index:-2;
+}
+.navbar{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 6%;
+background:rgba(0,0,0,.85);
+backdrop-filter:blur(10px);
+border-bottom:1px solid rgba(0,140,255,.3);
+z-index:1000;
+}
+.brand{
+font-size:1.8rem;
+font-weight:bold;
+color:#1e90ff;
+}
+nav a{
+color:white;
+text-decoration:none;
+margin-left:25px;
+}
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:120px 20px 40px;
+background:radial-gradient(circle at center, rgba(0,120,255,.18), transparent 60%);
+}
+.hero-content{max-width:1100px}
+.hero-logo{
+width:min(900px,90%);
+height:auto;
+filter:
+drop-shadow(0 0 15px #008cff)
+drop-shadow(0 0 35px #008cff)
+drop-shadow(0 0 60px rgba(0,140,255,.8));
+animation:floatLogo 5s ease-in-out infinite;
+}
+@keyframes floatLogo{
+50%{transform:translateY(-12px)}
+}
+h1{
+margin-top:20px;
+font-size:3rem;
+color:#4da3ff;
+}
+.hero p{
+max-width:700px;
+margin:20px auto;
+font-size:1.2rem;
+}
+.btn{
+display:inline-block;
+background:#0078ff;
+color:white;
+padding:14px 30px;
+border-radius:8px;
+text-decoration:none;
+margin-top:10px;
+}
+section{padding:80px 8%}
+.section-title{
+text-align:center;
+font-size:2.5rem;
+color:#4da3ff;
+margin-bottom:40px;
+}
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:20px;
+}
+.card{
+background:#111;
+padding:25px;
+border:1px solid rgba(0,140,255,.35);
+border-radius:12px;
+}
+.card h3{color:#4da3ff;margin-bottom:10px}
+footer{
+text-align:center;
+padding:30px;
+border-top:1px solid #222;
+}
+</style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<header class="navbar">
+<div class="brand">PCFIX</div>
+<nav>
+<a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section id="home" class="hero">
+<div class="hero-content">
+<img class="hero-logo" src="pcfix_logo.png" alt="PCFIX Logo"
+onerror="this.style.display='none';document.getElementById('fallback').style.display='block';">
+
+<div id="fallback" style="display:none;">
+<h1 style="font-size:6rem;">PCFIX</h1>
+</div>
+
+<h1>Troubleshoot. Repair. Solve.</h1>
+<p>Professional computer repair, malware removal, cybersecurity services, upgrades, and network support.</p>
+<a href="#services" class="btn">Explore Services</a>
+</div>
+</section>
+
+<section id="services">
+<h2 class="section-title">Services</h2>
+<div class="cards">
+<div class="card"><h3>Computer Repair</h3><p>Hardware diagnostics and repair.</p></div>
+<div class="card"><h3>Virus Removal</h3><p>Malware and ransomware cleanup.</p></div>
+<div class="card"><h3>Network Support</h3><p>Wi‑Fi and business networking.</p></div>
+<div class="card"><h3>Cybersecurity</h3><p>Security hardening and protection.</p></div>
+</div>
+</section>
+
+<section id="contact">
+<h2 class="section-title">Contact PCFIX</h2>
+<p style="text-align:center;">Ready to get your systems running at peak performance?</p>
+</section>
+
+<footer>© 2026 PCFIX | Troubleshoot. Repair. Solve.</footer>
+
+<script>
+const canvas=document.getElementById('matrix');
+const ctx=canvas.getContext('2d');
+
+function resize(){
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+}
+resize();
+window.addEventListener('resize',resize);
+
+const chars='01ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const size=16;
+let columns=Math.floor(window.innerWidth/size);
+let drops=Array(columns).fill(1);
+
+setInterval(()=>{
+ctx.fillStyle='rgba(0,0,0,.08)';
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle='#008cff';
+ctx.shadowColor='#008cff';
+ctx.shadowBlur=8;
+ctx.font=size+'px monospace';
+
+for(let i=0;i<drops.length;i++){
+const text=chars[Math.floor(Math.random()*chars.length)];
+ctx.fillText(text,i*size,drops[i]*size);
+
+if(drops[i]*size>canvas.height && Math.random()>0.975){
+drops[i]=0;
+}
+drops[i]++;
+}
+},35);
+</script>
+
+</body>
+</html>
